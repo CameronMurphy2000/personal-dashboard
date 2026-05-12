@@ -1,0 +1,36 @@
+body {
+    background: rgb(166, 93, 126);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.main-container {
+  height: 95vh;
+  width: 95vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #93203e;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #3b0d19;
+    position: relative;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
