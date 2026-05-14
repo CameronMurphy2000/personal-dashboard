@@ -1,6 +1,7 @@
 body {
     background: rgb(166, 93, 126);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;

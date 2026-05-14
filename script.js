@@ -1,4 +1,72 @@
+// Time
+
+const clockDisplay = document.querySelector(".clock");
+
+function updateClock() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  clockDisplay.textContent = timeString;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+// Date
+
+const dateDisplay = document.querySelector(".date");
+
+function updateDate() {
+  const date = new Date();
+  const dateString = date.toLocaleDateString("en-GB", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  dateDisplay.textContent = dateString;
+}
+
+setInterval(updateDate, 1000);
+updateDate();
+
 // Weather
+
+const weatherDisplay = document.querySelector(".weather");
+
+async function updateWeather(position) {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+
+  const response = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
+  );
+
+  const data = await response.json();
+
+  const temp = data.current_weather.temperature;
+  const wind = data.current_weather.windspeed;
+
+  weatherDisplay.textContent =
+    `${temp}°C | Wind ${wind} km/h`;
+}
+
+function getWeather() {
+  navigator.geolocation.getCurrentPosition(
+    updateWeather,
+    (error) => {
+      console.error(error);
+    }
+  );
+}
+
+getWeather();
+
+setInterval(getWeather, 3600000);
+
+// Weather Widget
 
 const weatherForm = document.querySelector(".weather-form");
 const cityInput = document.querySelector(".city-input");
